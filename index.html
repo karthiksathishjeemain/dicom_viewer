@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DICOM Viewer</title>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <span class="logo">◫</span>
+        <h1>DICOM Viewer</h1>
+      </div>
+      <label class="file-btn">
+        <input id="file-input" type="file" accept=".dcm,.dicom,application/dicom" />
+        <span>Open DICOM file</span>
+      </label>
+    </header>
+
+    <main id="app">
+      <section id="dropzone" class="dropzone">
+        <div class="dropzone-inner">
+          <div class="dz-icon">⤓</div>
+          <p class="dz-title">Drop a DICOM file here</p>
+          <p class="dz-sub">or use “Open DICOM file”. Files are processed entirely in your browser — nothing is uploaded.</p>
+        </div>
+      </section>
+
+      <section id="workspace" class="workspace hidden">
+        <div class="viewer-pane">
+          <div class="viewer-toolbar">
+            <div class="ctrl">
+              <label>Window Width</label>
+              <input id="ww" type="range" min="1" max="4000" value="400" />
+              <span id="ww-val" class="val">400</span>
+            </div>
+            <div class="ctrl">
+              <label>Window Center</label>
+              <input id="wc" type="range" min="-1000" max="3000" value="40" />
+              <span id="wc-val" class="val">40</span>
+            </div>
+            <div class="ctrl frame-ctrl hidden" id="frame-ctrl">
+              <label>Frame</label>
+              <input id="frame" type="range" min="0" max="0" value="0" />
+              <span id="frame-val" class="val">1 / 1</span>
+            </div>
+            <button id="invert" class="tbtn" type="button">Invert</button>
+            <button id="reset" class="tbtn" type="button">Reset W/L</button>
+          </div>
+          <div class="canvas-wrap">
+            <canvas id="canvas"></canvas>
+            <div id="canvas-msg" class="canvas-msg hidden"></div>
+          </div>
+          <div id="pixel-info" class="pixel-info"></div>
+        </div>
+
+        <aside class="meta-pane">
+          <div class="meta-head">
+            <h2>Metadata</h2>
+            <input id="meta-search" type="search" placeholder="Filter tags…" />
+          </div>
+          <div class="meta-table-wrap">
+            <table class="meta-table">
+              <thead>
+                <tr><th>Tag</th><th>Name</th><th>VR</th><th>Value</th></tr>
+              </thead>
+              <tbody id="meta-body"></tbody>
+            </table>
+          </div>
+        </aside>
+      </section>
+    </main>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
